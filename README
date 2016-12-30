@@ -1,0 +1,1 @@
+This is a lambda script to take a intent from Alexa and change the state of a IOT device based on its current state.
