@@ -1,6 +1,9 @@
 var AWS=require('aws-sdk');
 var iotdata = new AWS.IotData({endpoint: 'YOUR ENDPOINT HERE'});
 var getparams;
+var set_params;
+var date = new Date();
+var time = date.toString();
 
 
 exports.handler = (event, context) => {
@@ -53,8 +56,9 @@ exports.handler = (event, context) => {
                         console.log('calling toggle tree function.');
 
                         //parameters to set  CHANGE STATE TO ON
-                        var set_params = {
-                      payload: '{"state":{"reported": {"state": "ON","timestamp": "Mon Dec 26 2016 20:11:38 GMT-0600 (CST)"}}}',//payload1,
+                        set_params = {
+                      //payload: '{"state":{"desired": {"state": "ON","timestamp": "Mon Dec 26 2016 20:11:38 GMT-0600 (CST)"},"reported": {"state": "OFF","timestamp": "Mon Dec 26 2016 20:11:38 GMT-0600 (CST)"}}}',
+                      payload: '{"state":{"desired": {"state": "ON","timestamp": "' + time +'"},"reported": {"state": "OFF","timestamp": "' + time +'"}}}',
                       thingName: 'Christmas_Tree' /* required */
                     };
 
@@ -97,9 +101,9 @@ exports.handler = (event, context) => {
                         //turn it off
                         console.log('calling toggle tree function.');
 
-                        //parameters to set  CHANGE STATE TO FF
-                        var set_params = {
-                      payload: '{"state":{"reported": {"state": "OFF","timestamp": "Mon Dec 26 2016 20:11:38 GMT-0600 (CST)"}}}',//payload1,
+                        //parameters to set  CHANGE STATE TO OFF
+                    set_params = {
+                      payload: '{"state":{"desired": {"state": "OFF","timestamp": "' + time +'"},"reported": {"state": "ON","timestamp": "' + time +'"}}}',
                       thingName: 'Christmas_Tree' /* required */
                     };
 
@@ -142,9 +146,9 @@ exports.handler = (event, context) => {
                         //turn it off
                         console.log('calling toggle tree function.');
 
-                        //parameters to set  CHANGE STATE TO OFF
-                        var set_params = {
-                      payload: '{"state":{"reported": {"state": "OFF","timestamp": "Mon Dec 26 2016 20:11:38 GMT-0600 (CST)"}}}',//payload1,
+                        //parameters to set  CHANGE desired STATE TO OFF
+                    set_params = {
+                      payload: '{"state":{"desired": {"state": "OFF","timestamp": "' + time +'"},"reported": {"state": "ON","timestamp": "' + time +'"}}}',
                       thingName: 'Christmas_Tree' /* required */
                     };
 
@@ -155,9 +159,9 @@ exports.handler = (event, context) => {
                     else
                     {
 
-                        //parameters to set  CHANGE STATE to ON
+                        //parameters to set  CHANGE desired STATE to ON
                         var set_params = {
-                      payload: '{"state":{"reported": {"state": "ON","timestamp": "Mon Dec 26 2016 20:11:38 GMT-0600 (CST)"}}}',//payload1,
+                      payload: '{"state":{"desired": {"state": "ON","timestamp": "' + time +'"},"reported": {"state": "OFF","timestamp": "' + time +'"}}}',
                       thingName: 'Christmas_Tree' /* required */
                     };
 
